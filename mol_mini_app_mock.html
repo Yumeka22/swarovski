@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Masters of Light | Swarovski × JING</title>
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <style>
 :root {
   /* Swarovski brand palette — #96B9E8 */
@@ -1029,6 +1030,24 @@ body{
 </nav>
 
 <script>
+const LIFF_ID = "2011075418-xxxxxxxx"; // LIFF IDをLINE Developersコンソールで発行後に差し替え
+
+liff.init({ liffId: LIFF_ID })
+  .then(() => {
+    if (!liff.isLoggedIn()) {
+      liff.login({ redirectUri: location.href });
+    } else {
+      const profile = liff.getProfile().then(p => {
+        // ログイン済みユーザー名を取得（任意で表示に使用可能）
+        console.log('LIFF user:', p.displayName);
+      }).catch(()=>{});
+    }
+  })
+  .catch(err => {
+    // LIFF外（ブラウザ直アクセス等）でも動作継続
+    console.warn('LIFF init failed (non-LINE env):', err);
+  });
+
 const ROOMS = [
   {id:1, name:"TIME",              ja:"時の間",       desc:"光と時間が交差する空間で、スワロフスキーが刻んできた歴史の始まりをご体感ください。",           dur:"2:45", sec:165, icon:"⧖", em:"⏳"},
   {id:2, name:"FUTURE HISTORY",    ja:"未来の歴史",    desc:"過去と未来が融合する展示空間。クリスタルが映し出す時代の変遷をご覧ください。",                 dur:"3:12", sec:192, icon:"◈", em:"🔮"},
