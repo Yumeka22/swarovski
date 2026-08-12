@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Masters of Light | Swarovski × JING</title>
+<style>
+:root {
+  /* Swarovski brand palette — #96B9E8 */
+  --sw:      #96B9E8;          /* Swarovski signature light blue */
+  --sw-dk:   #6a96cc;          /* darker shade for hover/border */
+  --sw-lt:   #ddeaf8;          /* tint for backgrounds */
+  --sw-bg:   #f0f6fd;          /* very light tint */
+
+  --bg:      #f6f9fd;
+  --bg2:     #edf3fa;
+  --bg3:     #e2ecf7;
+  --border:  #cddcf0;
+  --border2: #aac2e0;
+
+  --navy:    #96B9E8;          /* primary = Swarovski blue */
+  --navy2:   #7aa8e0;
+  --navy-lt: #eaf3fc;
+
+  --black:   #1c2a3a;
+  --gray1:   #3a4e66;
+  --gray2:   #7090b0;
+  --gray3:   #a8bece;
+  --gray4:   #d4e2f0;
+
+  --silver:  #c0d0e4;
+  --silver2: #e8eff8;
+
+  --crystal: #96B9E8;
+  --crystal2:#b8d0f0;
+  --crystal-lt: #eaf3fc;
+
+  --teal:    #5a9ab8;
+  --teal-lt: #e0f0f8;
+
+  --ff: 'Helvetica Neue','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+  --ff-serif: 'Georgia','Times New Roman','Hiragino Mincho ProN',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--black);
+  font-family:var(--ff);
+  max-width:390px;
+  margin:0 auto;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ═══════════════ HEADER ═══════════════ */
+.hdr {
+  position:sticky;top:0;z-index:300;
+  background:rgba(150,185,232,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+}
+.hdr-logo { display:flex;flex-direction:column;gap:2px; }
+.hdr-brand {
+  font-family:var(--ff);
+  font-size:14px;letter-spacing:.28em;
+  color:#fff;text-transform:uppercase;font-weight:500;
+}
+.hdr-sub { font-size:8px;letter-spacing:.22em;color:var(--crystal2);text-transform:uppercase; }
+.stamp-pill {
+  display:flex;align-items:center;gap:6px;
+  border:1px solid rgba(255,255,255,.25);
+  padding:5px 11px;
+  font-size:10px;letter-spacing:.1em;color:#fff;
+  background:rgba(255,255,255,.1);
+}
+.stamp-pill-count { font-weight:600;color:var(--crystal2); }
+
+/* ═══════════════ TABS ═══════════════ */
+.tabs {
+  position:sticky;top:60px;z-index:290;
+  display:flex;background:var(--sw);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none;}
+.tab {
+  flex:0 0 auto;padding:12px 14px;
+  background:none;border:none;
+  color:rgba(255,255,255,.4);font-family:var(--ff);
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:color .18s;
+  position:relative;white-space:nowrap;
+}
+.tab.on{color:#fff;}
+.tab.on::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:#fff;
+}
+
+/* ═══════════════ PANELS ═══════════════ */
+.panel{display:none;}
+.panel.on{display:block;}
+.pad{padding:20px 18px 88px;}
+
+/* ── section head ── */
+.sec-eyebrow {
+  font-size:8.5px;letter-spacing:.3em;
+  color:var(--sw-dk);text-transform:uppercase;margin-bottom:6px;
+}
+.sec-title {
+  font-family:var(--ff-serif);
+  font-size:22px;font-weight:400;letter-spacing:.03em;
+  color:var(--navy);margin-bottom:4px;
+  line-height:1.25;
+}
+.sec-sub {
+  font-size:10.5px;color:var(--gray2);
+  letter-spacing:.06em;margin-bottom:22px;
+}
+.divider{height:1px;background:var(--border);margin:20px 0;}
+
+/* ═══════════════ MAP ═══════════════ */
+.venue-wrap {
+  border:1px solid var(--border);
+  background:var(--bg2);
+  width:100%;aspect-ratio:3/4.1;
+  overflow:hidden;position:relative;
+}
+.venue-wrap svg{width:100%;height:100%;}
+.r-node{cursor:pointer;}
+.r-node .rb{transition:fill .18s,stroke .18s;}
+.r-node:hover .rb{fill:var(--navy-lt);}
+.map-legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:9.5px;color:var(--gray2);}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.chip-label{
+  font-size:8.5px;letter-spacing:.24em;color:var(--gray2);
+  text-transform:uppercase;margin-top:20px;margin-bottom:10px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{
+  padding:6px 13px;font-size:11px;letter-spacing:.06em;
+  border:1px solid var(--border2);color:var(--gray1);
+  background:var(--bg);cursor:pointer;transition:all .18s;
+}
+.chip.on{border-color:var(--navy);color:var(--navy);background:var(--navy-lt);font-weight:600;}
+.chip.done{border-color:var(--crystal);color:var(--teal);}
+
+/* ═══════════════ AUDIO ═══════════════ */
+.nfc-card {
+  border:1px solid var(--border);
+  background:var(--bg2);
+  padding:26px 20px;text-align:center;
+  margin-bottom:22px;
+}
+.nfc-ring {
+  width:56px;height:56px;border:1px solid var(--border2);
+  border-radius:50%;margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);font-size:22px;
+}
+.nfc-ttl {
+  font-family:var(--ff-serif);
+  font-size:15px;font-weight:400;letter-spacing:.04em;
+  color:var(--black);margin-bottom:8px;
+}
+.nfc-body{font-size:11px;line-height:1.75;color:var(--gray2);margin-bottom:18px;}
+.btn-outline {
+  display:inline-block;padding:11px 28px;
+  border:1px solid var(--navy);color:var(--navy);
+  background:none;font-family:var(--ff);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.btn-outline:hover{background:var(--navy);color:#fff;}
+.btn-fill {
+  display:inline-block;padding:11px 28px;
+  border:1px solid var(--navy);color:#fff;
+  background:var(--navy);font-family:var(--ff);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.btn-fill:hover{opacity:.8;}
+
+/* Now playing */
+.np-card {
+  border:1px solid var(--border);
+  background:var(--bg);
+  margin-bottom:22px;overflow:hidden;
+}
+.np-bar {
+  background:var(--navy);padding:6px 16px;
+  display:flex;align-items:center;gap:8px;
+}
+.np-dot{width:6px;height:6px;border-radius:50%;background:var(--bg);}
+.np-lbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--bg);font-weight:500;}
+.np-body{padding:18px;}
+.np-rname {
+  font-family:var(--ff-serif);
+  font-size:22px;font-weight:400;letter-spacing:.03em;
+  color:var(--navy);margin-bottom:3px;
+}
+.np-rsub{font-size:9.5px;letter-spacing:.16em;color:var(--sw-dk);text-transform:uppercase;margin-bottom:12px;}
+.np-desc{font-size:11.5px;line-height:1.75;color:var(--gray1);margin-bottom:16px;}
+.guide-row {
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin-bottom:16px;
+}
+.guide-av {
+  width:38px;height:38px;border-radius:50%;
+  background:var(--sw);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.guide-name{font-size:13px;font-weight:600;color:var(--navy);letter-spacing:.04em;}
+.guide-role{font-size:10px;color:var(--gray2);letter-spacing:.06em;margin-top:2px;}
+
+.waveform{display:flex;align-items:center;gap:2px;height:28px;margin-bottom:12px;}
+.wb{flex:1;min-width:2px;max-width:5px;background:var(--border);border-radius:1px;}
+.wb.on{background:var(--crystal);animation:wv .7s ease-in-out infinite alternate;}
+@keyframes wv{from{height:3px}to{height:var(--h,20px)}}
+
+.prog-rail{width:100%;height:2px;background:var(--border);cursor:pointer;margin-bottom:6px;}
+.prog-fill{height:100%;background:var(--navy);transition:width .3s;}
+.prog-times{display:flex;justify-content:space-between;font-size:10px;color:var(--gray3);font-variant-numeric:tabular-nums;margin-bottom:16px;}
+
+.ctrls{display:flex;align-items:center;justify-content:center;gap:14px;}
+.cbtn{background:none;border:none;cursor:pointer;color:var(--gray2);font-size:18px;padding:8px;transition:color .15s;}
+.cbtn:hover{color:var(--black);}
+.cbtn.play-btn{
+  width:48px;height:48px;
+  border:1.5px solid var(--navy)!important;
+  color:var(--navy)!important;font-size:18px;
+  transition:all .2s!important;
+}
+.cbtn.play-btn:hover{background:var(--navy)!important;color:#fff!important;}
+.skip-txt{font-size:9.5px;}
+
+/* Room list */
+.rlist-lbl{font-size:8.5px;letter-spacing:.24em;color:var(--gray2);text-transform:uppercase;margin-bottom:10px;}
+.rlist{display:flex;flex-direction:column;gap:1px;}
+.ri {
+  display:flex;align-items:center;gap:12px;
+  padding:13px 14px;background:var(--bg);
+  border:1px solid var(--border);
+  cursor:pointer;transition:background .15s;position:relative;
+}
+.ri:hover{background:var(--bg2);}
+.ri.on{border-color:var(--navy);background:var(--navy-lt);}
+.ri.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--navy);}
+.ri.done .rnum{color:var(--teal);border-color:var(--crystal);}
+.ri.done::after{content:'✓';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--teal);}
+.rnum{
+  width:26px;height:26px;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:600;color:var(--gray2);flex-shrink:0;
+}
+.ri.on .rnum{border-color:var(--navy);color:var(--navy);}
+.rinfo{flex:1;min-width:0;}
+.rname{font-size:12px;font-weight:600;color:var(--navy);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rja{font-size:10px;color:var(--gray2);margin-top:1px;}
+.rdur{font-size:10px;color:var(--gray2);flex-shrink:0;font-variant-numeric:tabular-nums;}
+
+/* ═══════════════ TICKET ═══════════════ */
+.tkt {
+  border:1px solid var(--border);
+  background:var(--bg);
+  position:relative;overflow:hidden;
+  margin-bottom:24px;
+}
+.tkt-hole-l,.tkt-hole-r{
+  position:absolute;top:calc(50% - 54px);
+  width:18px;height:18px;border-radius:50%;background:var(--bg2);
+  border:1px solid var(--border);
+}
+.tkt-hole-l{left:-9px;}
+.tkt-hole-r{right:-9px;}
+.tkt-top {
+  padding:30px 24px 26px;text-align:center;
+  background:linear-gradient(145deg, var(--sw) 0%, var(--sw-dk) 100%);
+  border-bottom:1px dashed rgba(126,184,212,.3);
+  position:relative;overflow:hidden;
+}
+.tkt-brand{font-size:9px;letter-spacing:.36em;color:var(--gray3);text-transform:uppercase;margin-bottom:10px;}
+.tkt-ttl{font-family:var(--ff-serif);font-size:28px;font-weight:400;letter-spacing:.06em;color:var(--bg);margin-bottom:3px;}
+.tkt-sub{font-size:9px;letter-spacing:.26em;color:var(--gray3);text-transform:uppercase;margin-bottom:10px;}
+.tkt-venue {
+  display:inline-block;
+  border:1px solid rgba(255,255,255,.3);
+  padding:4px 14px;
+  font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.75);
+  text-transform:uppercase;
+}
+.tkt-info{padding:16px 22px;}
+.tkt-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
+.tkt-row:last-child{border-bottom:none;}
+.tk{font-size:8.5px;letter-spacing:.18em;color:var(--gray2);text-transform:uppercase;}
+.tv{font-size:12px;color:var(--black);text-align:right;font-weight:500;line-height:1.5;}
+.tkt-btm {
+  padding:16px 22px;border-top:1px dashed var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--bg2);
+}
+.tkt-id-lbl{font-size:8px;letter-spacing:.22em;color:var(--gray2);text-transform:uppercase;}
+.tkt-id-num{font-size:22px;font-weight:700;color:var(--black);letter-spacing:.06em;margin-top:4px;}
+.tkt-id-note{font-size:9.5px;color:var(--gray2);margin-top:4px;line-height:1.5;}
+.tkt-qr{
+  width:66px;height:66px;background:var(--bg);
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.info-block{border:1px solid var(--border);background:var(--bg2);}
+.info-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 16px;border-bottom:1px solid var(--border);}
+.info-row:last-child{border-bottom:none;}
+
+/* ═══════════════ PHOTO ═══════════════ */
+.photo-note{
+  border:1px solid var(--border);background:var(--bg2);
+  padding:14px 16px;margin-bottom:18px;
+}
+.photo-note p{font-size:11px;line-height:1.75;color:var(--gray1);}
+.photo-note strong{color:var(--black);}
+/* Photo booth — single column, purikura 4-cut format */
+.pgrid{display:flex;flex-direction:column;gap:16px;}
+.pi-card{
+  border:1px solid var(--border);
+  background:var(--bg2);
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;transition:opacity .2s;
+}
+.pi-card:hover:not(.locked){opacity:.88;}
+.pi-card.locked{cursor:default;}
+
+/* Header row inside card */
+.pi-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  background:var(--bg);
+}
+.pi-header-room{font-size:8.5px;letter-spacing:.2em;color:var(--gray2);text-transform:uppercase;}
+.pi-header-name{font-size:12px;font-weight:600;color:var(--black);}
+.pi-header-date{font-size:10px;color:var(--gray3);}
+
+/* 4-cut grid */
+.pi-cuts{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:2px;
+  background:var(--border);
+  aspect-ratio:1/1.1;
+}
+.pi-cut{
+  background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.pi-cut-emoji{font-size:36px;}
+.pi-cut-label{
+  position:absolute;bottom:4px;left:0;right:0;
+  text-align:center;font-size:8px;letter-spacing:.1em;
+  color:rgba(0,0,0,.35);text-transform:uppercase;
+}
+/* Footer row */
+.pi-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-top:1px solid var(--border);
+}
+.pi-footer-txt{font-size:10px;color:var(--gray2);}
+.pi-footer-btn{
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--black);padding:5px 12px;
+  background:none;color:var(--black);cursor:pointer;
+  transition:all .18s;font-family:var(--ff);
+}
+.pi-footer-btn:hover{background:var(--black);color:var(--bg);}
+/* Lock overlay */
+.pi-lock{
+  position:absolute;inset:0;
+  background:rgba(255,255,255,.75);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  z-index:2;
+}
+.pi-lock-icon{font-size:28px;}
+.pi-lock span{font-size:9px;letter-spacing:.12em;color:var(--gray1);text-transform:uppercase;}
+.lb{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,.95);
+  display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+}
+.lb.on{display:flex;}
+.lb-x{
+  position:absolute;top:18px;right:18px;
+  background:none;border:1px solid rgba(255,255,255,.3);
+  color:rgba(255,255,255,.7);width:36px;height:36px;
+  cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.lb-frame{
+  width:100%;max-width:340px;aspect-ratio:3/4;
+  background:#1a1a1a;border:1px solid #333;
+  display:flex;align-items:center;justify-content:center;
+}
+.lb-cap{margin-top:16px;text-align:center;}
+.lb-cap-ttl{font-family:var(--ff-serif);font-size:17px;font-weight:400;color:#fff;letter-spacing:.05em;}
+.lb-cap-sub{font-size:9.5px;letter-spacing:.18em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-top:4px;}
+.lb-save{
+  margin-top:18px;border:1px solid #fff;color:#fff;
+  background:none;padding:11px 34px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;font-family:var(--ff);transition:all .2s;
+}
+.lb-save:hover{background:#fff;color:#000;}
+
+/* ═══════════════ STAMP ═══════════════ */
+.stamp-hero {
+  border:1px solid var(--border);
+  background:linear-gradient(145deg, var(--sw) 0%, var(--sw-dk) 100%);
+  padding:28px 20px;text-align:center;
+  margin-bottom:24px;position:relative;overflow:hidden;
+}
+.stamp-hero-eyebrow{font-size:8.5px;letter-spacing:.3em;color:var(--gray3);text-transform:uppercase;margin-bottom:8px;}
+.stamp-hero-ttl{font-family:var(--ff-serif);font-size:20px;font-weight:400;letter-spacing:.05em;color:var(--bg);margin-bottom:6px;}
+.stamp-hero-sub{font-size:11px;line-height:1.75;color:var(--gray3);}
+
+.sp-wrap{margin-bottom:24px;}
+.sp-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
+.sp-heading{font-size:10px;letter-spacing:.18em;color:var(--gray2);text-transform:uppercase;}
+.sp-count{font-size:11px;color:var(--gray1);font-variant-numeric:tabular-nums;}
+.sp-count b{color:var(--black);font-size:14px;}
+.sp-bar{height:2px;background:var(--border);position:relative;}
+.sp-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg, var(--sw-dk), var(--sw));transition:width .5s;}
+
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
+/* Per-room stamp colors */
+.sc{--sc-c:#ccc;--sc-bg:#f5f5f5;--sc-txt:#aaa;}
+.sc[data-r="1"]{--sc-c:#e07b7b;--sc-bg:#fdf0f0;--sc-txt:#c45a5a;}
+.sc[data-r="2"]{--sc-c:#e0a050;--sc-bg:#fdf5e8;--sc-txt:#b87a28;}
+.sc[data-r="3"]{--sc-c:#d4c240;--sc-bg:#fdfce8;--sc-txt:#a09a20;}
+.sc[data-r="4"]{--sc-c:#6cbd78;--sc-bg:#eef8f0;--sc-txt:#3a9248;}
+.sc[data-r="5"]{--sc-c:#4ab8c0;--sc-bg:#e8f8fa;--sc-txt:#2a8890;}
+.sc[data-r="6"]{--sc-c:#5a88d8;--sc-bg:#eef2fd;--sc-txt:#3060b8;}
+.sc[data-r="7"]{--sc-c:#9060d0;--sc-bg:#f4eefa;--sc-txt:#6a38b0;}
+.sc[data-r="8"]{--sc-c:#d060a8;--sc-bg:#fceef8;--sc-txt:#a83880;}
+.sc {
+  aspect-ratio:1;
+  border:1.5px solid var(--border);
+  background:var(--bg2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  position:relative;transition:all .35s;
+}
+.sc.earned{
+  border-color:var(--sc-c);
+  background:var(--sc-bg);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--sc-c) 18%, transparent);
+  transform:scale(1.04);
+}
+.sc.earned .si{filter:none;opacity:1;}
+.sc.earned .sck{opacity:1;color:var(--sc-c);}
+.sc.earned .srn{color:var(--sc-txt);font-weight:600;}
+.si{font-size:20px;filter:grayscale(1);opacity:.18;transition:all .35s;}
+.srn{font-size:8.5px;letter-spacing:.1em;color:var(--gray3);}
+.sck{position:absolute;top:4px;right:5px;font-size:9px;color:var(--teal);opacity:0;transition:opacity .35s;}
+
+/* Step indicator under grid */
+.step-list{display:flex;flex-direction:column;gap:1px;margin-bottom:24px;}
+.step-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 14px;border:1px solid var(--border);
+  background:var(--bg);transition:all .2s;
+}
+.step-item.done{background:var(--teal-lt);border-color:var(--teal);}
+.step-num{
+  width:22px;height:22px;border:1px solid var(--border2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:600;color:var(--gray2);flex-shrink:0;
+}
+.step-item.done .step-num{border-color:var(--teal);color:var(--teal);}
+.step-txt{flex:1;font-size:12px;color:var(--gray1);}
+.step-item.done .step-txt{color:var(--black);}
+.step-chk{font-size:13px;color:var(--teal);opacity:0;transition:opacity .2s;}
+.step-item.done .step-chk{opacity:1;}
+
+/* Reward */
+.reward-section{border-top:1px solid var(--border);padding-top:20px;}
+.reward-lbl{font-size:8.5px;letter-spacing:.24em;color:var(--gray2);text-transform:uppercase;margin-bottom:12px;}
+.reward-card{
+  border:1px solid var(--border);background:var(--bg2);
+  padding:18px;display:flex;align-items:center;gap:16px;
+  opacity:.3;transition:opacity .5s,border-color .4s;
+}
+.reward-card.unlocked{opacity:1;border-color:var(--black);}
+.reward-icon{font-size:30px;flex-shrink:0;}
+.reward-txt h4{font-size:13px;font-weight:600;color:var(--black);letter-spacing:.04em;margin-bottom:5px;}
+.reward-txt p{font-size:11px;color:var(--gray1);line-height:1.6;}
+.reward-lock{font-size:18px;margin-left:auto;flex-shrink:0;color:var(--gray3);}
+.reward-cta{
+  display:block;width:100%;margin-top:12px;
+  padding:13px;border:none;
+  background:linear-gradient(135deg, var(--sw), var(--sw-dk));
+  color:#fff;
+  font-family:var(--ff);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  cursor:pointer;transition:opacity .2s;
+  opacity:.4;pointer-events:none;
+}
+.reward-cta.active{opacity:1;pointer-events:auto;}
+.reward-cta:hover{opacity:.85;}
+
+/* ═══════════════ SECRET MODAL ═══════════════ */
+.secret{
+  position:fixed;inset:0;z-index:700;
+  background:rgba(255,255,255,.98);
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  padding:32px;text-align:center;
+}
+.secret.on{display:flex;}
+.secret-ring{
+  width:130px;height:130px;
+  border:1px solid var(--border2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;
+  animation:sring 3s ease-in-out infinite;
+}
+@keyframes sring{0%,100%{box-shadow:0 0 0 0 rgba(0,0,0,.06)}50%{box-shadow:0 0 0 20px rgba(0,0,0,.04)}}
+.secret-sticker{font-size:64px;}
+.secret-eyebrow{font-size:8.5px;letter-spacing:.34em;color:var(--gray2);text-transform:uppercase;margin-bottom:10px;}
+.secret-ttl{font-family:var(--ff-serif);font-size:24px;font-weight:400;letter-spacing:.04em;color:var(--navy);margin-bottom:10px;}
+.secret-div{width:32px;height:1px;background:var(--border2);margin:0 auto 18px;}
+.secret-body{font-size:11.5px;line-height:1.8;color:var(--gray1);margin-bottom:28px;max-width:280px;}
+.secret-cta{
+  border:none;color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy2));
+  padding:13px 40px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  cursor:pointer;font-family:var(--ff);transition:opacity .2s;
+}
+.secret-cta:hover{opacity:.8;}
+.secret-note{font-size:9.5px;color:var(--gray3);margin-top:14px;letter-spacing:.06em;}
+
+/* ═══════════════ TOAST ═══════════════ */
+.toast{
+  position:fixed;bottom:78px;left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--sw);
+  padding:9px 18px;font-size:10.5px;letter-spacing:.06em;color:var(--bg);
+  opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;z-index:500;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ═══════════════ BOTTOM NAV ═══════════════ */
+.bnav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:390px;
+  background:rgba(150,185,232,.97);backdrop-filter:blur(16px);
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;z-index:400;
+}
+.bn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;color:rgba(255,255,255,.35);
+  font-size:8.5px;padding:9px 0;cursor:pointer;
+  transition:color .18s;letter-spacing:.1em;text-transform:uppercase;font-family:var(--ff);
+}
+.bn span{font-size:16px;}
+.bn.on{color:var(--crystal2);}
+
+/* ── QUIZ PANEL ── */
+#panel-quiz{padding-bottom:80px;}
+.qz-hero{background:linear-gradient(135deg,var(--sw) 0%,var(--sw-dk) 100%);
+  color:#fff;text-align:center;padding:32px 20px 28px;border-radius:0 0 20px 20px;margin-bottom:20px;}
+.qz-hero h2{font-family:var(--ff-serif);font-size:22px;letter-spacing:.12em;margin:0 0 6px;}
+.qz-hero p{font-size:12px;opacity:.85;margin:0;}
+.qz-prog{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:16px;}
+.qz-prog-dot{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;
+  transition:all .3s;}
+.qz-prog-dot.got{background:#fff;color:var(--sw);}
+.qz-prog-dot.cur{background:rgba(255,255,255,.5);box-shadow:0 0 0 3px rgba(255,255,255,.6);}
+.qz-code-count{font-size:13px;opacity:.8;margin-top:8px;}
+
+.qz-card{background:#fff;border-radius:14px;border:1.5px solid var(--border);padding:22px 18px;margin:0 14px 16px;}
+.qz-qnum{font-size:11px;color:var(--sw);font-weight:700;letter-spacing:.1em;margin-bottom:8px;}
+.qz-qtext{font-size:15px;color:var(--black);line-height:1.65;margin-bottom:18px;font-weight:500;}
+.qz-choices{display:flex;flex-direction:column;gap:10px;}
+.qz-choice{background:var(--sw-bg);border:1.5px solid var(--border);border-radius:10px;
+  padding:12px 16px;font-size:14px;color:var(--black);cursor:pointer;text-align:left;
+  transition:all .18s;}
+.qz-choice:active{transform:scale(.97);}
+.qz-choice.correct{background:#e8f5e9;border-color:#66bb6a;color:#2e7d32;}
+.qz-choice.wrong{background:#fce4ec;border-color:#ef9a9a;color:#c62828;}
+.qz-choice.disabled{pointer-events:none;opacity:.6;}
+
+.qz-result{display:none;margin-top:14px;padding:14px 16px;border-radius:10px;
+  font-size:13px;line-height:1.6;}
+.qz-result.show{display:block;}
+.qz-result.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;}
+.qz-result.ng{background:#fff3e0;color:#e65100;border:1px solid #ffcc80;}
+.qz-result-icon{font-size:20px;margin-bottom:4px;}
+.qz-next-btn{display:none;width:100%;margin-top:14px;background:var(--sw);color:#fff;
+  border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;}
+.qz-next-btn.show{display:block;}
+
+.qz-complete{display:none;text-align:center;padding:30px 20px;margin:0 14px;}
+.qz-complete.show{display:block;}
+.qz-complete-icon{font-size:56px;margin-bottom:12px;}
+.qz-complete h3{font-family:var(--ff-serif);font-size:20px;color:var(--sw);margin:0 0 8px;}
+.qz-complete p{font-size:13px;color:var(--gray1);line-height:1.6;margin:0 0 20px;}
+.qz-complete-btn{background:var(--sw);color:#fff;border:none;border-radius:12px;
+  padding:14px 36px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.08em;}
+
+.qz-novelty{display:none;padding:0 14px 20px;}
+.qz-novelty.show{display:block;}
+.qz-novelty h3{font-size:16px;font-weight:700;color:var(--black);text-align:center;
+  margin:0 0 16px;letter-spacing:.06em;}
+.qz-nov-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;
+  padding:18px;margin-bottom:12px;}
+.qz-nov-card h4{font-size:13px;font-weight:700;color:var(--sw);letter-spacing:.1em;
+  text-transform:uppercase;margin:0 0 6px;}
+.qz-nov-card p{font-size:13px;color:var(--gray1);line-height:1.6;margin:0 0 14px;}
+.qz-use-btn{width:100%;background:var(--sw);color:#fff;border:none;border-radius:10px;
+  padding:12px;font-size:14px;font-weight:700;cursor:pointer;}
+.qz-use-btn.used{background:var(--border2);pointer-events:none;}
+.qz-codes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0 20px;}
+.qz-code-chip{background:var(--sw-lt);color:var(--sw-dk);border-radius:8px;
+  padding:6px 14px;font-size:13px;font-weight:700;letter-spacing:.1em;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <div class="hdr-brand">Swarovski</div>
+    <div class="hdr-sub">Masters of Light</div>
+  </div>
+  <div class="stamp-pill">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <polygon points="5,.8 9.2,3 9.2,7 5,9.2 .8,7 .8,3" stroke="#444" stroke-width=".8"/>
+    </svg>
+    <span class="stamp-pill-count" id="hsc">0</span><span>/8</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tabs">
+  <button class="tab on" data-p="map"    onclick="sw('map',this)">   マップ</button>
+  <button class="tab"    data-p="audio"  onclick="sw('audio',this)"> ガイド</button>
+  <button class="tab"    data-p="ticket" onclick="sw('ticket',this)">チケット</button>
+  <button class="tab"    data-p="photo"  onclick="sw('photo',this)"> フォト</button>
+  <button class="tab"    data-p="stamp"  onclick="sw('stamp',this)"> スタンプ</button>
+  <button class="tab"    data-p="quiz"   onclick="sw('quiz',this)">  クイズ</button>
+</nav>
+
+<!-- ══════ MAP ══════ -->
+<div id="panel-map" class="panel on">
+  <div class="pad">
+    <div class="sec-eyebrow">Floor Map</div>
+    <div class="sec-title">会場フロアマップ</div>
+    <div class="sec-sub">JING 原宿 B1F — タップして現在地を選択</div>
+
+    <div class="venue-wrap">
+      <svg viewBox="0 0 340 460" xmlns="http://www.w3.org/2000/svg">
+        <rect width="340" height="460" fill="#edf0f5"/>
+        <rect x="14" y="14" width="312" height="432" fill="#edf0f5" stroke="#c0c8dc" stroke-width="1"/>
+        <!-- corridor -->
+        <rect x="140" y="14" width="60" height="432" fill="#dde2ee" stroke="#c0c8dc" stroke-width=".5"/>
+        <text x="170" y="452" text-anchor="middle" font-size="8" fill="#aaa" font-family="sans-serif" letter-spacing="3">ENTRANCE</text>
+        <line x1="148" y1="444" x2="192" y2="444" stroke="#b0bace" stroke-width=".5"/>
+
+        <!-- L1 TIME -->
+        <g class="r-node" id="mr1" onclick="selectRoomFromMap(1)">
+          <rect class="rb" id="rb1" x="22" y="22" width="110" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="77" y="50" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 1</text>
+          <text x="77" y="68" text-anchor="middle" font-size="14" fill="#1b2b5e" font-family="Georgia,serif">TIME</text>
+          <text x="77" y="86" text-anchor="middle" font-size="9" fill="#7a87a8" font-family="sans-serif">時の間</text>
+          <circle id="vd1" cx="118" cy="33" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- L2 FUTURE HISTORY -->
+        <g class="r-node" id="mr2" onclick="selectRoomFromMap(2)">
+          <rect class="rb" id="rb2" x="22" y="130" width="110" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="77" y="157" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 2</text>
+          <text x="77" y="173" text-anchor="middle" font-size="11.5" fill="#1b2b5e" font-family="Georgia,serif">FUTURE</text>
+          <text x="77" y="188" text-anchor="middle" font-size="11.5" fill="#1b2b5e" font-family="Georgia,serif">HISTORY</text>
+          <text x="77" y="206" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">未来の歴史</text>
+          <circle id="vd2" cx="118" cy="141" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- L3 MASTERS OF LIGHT -->
+        <g class="r-node" id="mr3" onclick="selectRoomFromMap(3)">
+          <rect class="rb" id="rb3" x="22" y="238" width="110" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="77" y="265" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 3</text>
+          <text x="77" y="280" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">MASTERS</text>
+          <text x="77" y="294" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">OF LIGHT</text>
+          <text x="77" y="311" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">光の間</text>
+          <circle id="vd3" cx="118" cy="249" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- L4 DIAMONDS -->
+        <g class="r-node" id="mr4" onclick="selectRoomFromMap(4)">
+          <rect class="rb" id="rb4" x="22" y="346" width="110" height="88" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="77" y="372" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 4</text>
+          <text x="77" y="389" text-anchor="middle" font-size="12" fill="#1b2b5e" font-family="Georgia,serif">DIAMONDS</text>
+          <text x="77" y="405" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">ダイヤモンドの間</text>
+          <circle id="vd4" cx="118" cy="357" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- R5 UNA ANGELIC MILAN -->
+        <g class="r-node" id="mr5" onclick="selectRoomFromMap(5)">
+          <rect class="rb" id="rb5" x="208" y="22" width="118" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="267" y="50" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 5</text>
+          <text x="267" y="65" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">UNA ANGELIC</text>
+          <text x="267" y="80" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">MILAN</text>
+          <text x="267" y="98" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">天使の間</text>
+          <circle id="vd5" cx="218" cy="33" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- R6 MATHEMAGICAL -->
+        <g class="r-node" id="mr6" onclick="selectRoomFromMap(6)">
+          <rect class="rb" id="rb6" x="208" y="130" width="118" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="267" y="157" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 6</text>
+          <text x="267" y="173" text-anchor="middle" font-size="11.5" fill="#1b2b5e" font-family="Georgia,serif">MATHE-</text>
+          <text x="267" y="188" text-anchor="middle" font-size="11.5" fill="#1b2b5e" font-family="Georgia,serif">MAGICAL</text>
+          <text x="267" y="206" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">数学的魔法</text>
+          <circle id="vd6" cx="218" cy="141" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- R7 THE JEWELRY BOX -->
+        <g class="r-node" id="mr7" onclick="selectRoomFromMap(7)">
+          <rect class="rb" id="rb7" x="208" y="238" width="118" height="98" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="267" y="265" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 7</text>
+          <text x="267" y="280" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">THE JEWELRY</text>
+          <text x="267" y="294" text-anchor="middle" font-size="11" fill="#1b2b5e" font-family="Georgia,serif">BOX</text>
+          <text x="267" y="311" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">宝石箱</text>
+          <circle id="vd7" cx="218" cy="249" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- R8 POP ICONS -->
+        <g class="r-node" id="mr8" onclick="selectRoomFromMap(8)">
+          <rect class="rb" id="rb8" x="208" y="346" width="118" height="88" fill="#f4f6fa" stroke="#c0c8dc" stroke-width="1"/>
+          <text x="267" y="372" text-anchor="middle" font-size="7.5" fill="#7a87a8" font-family="sans-serif" letter-spacing="2">ROOM 8</text>
+          <text x="267" y="389" text-anchor="middle" font-size="12" fill="#1b2b5e" font-family="Georgia,serif">POP ICONS</text>
+          <text x="267" y="405" text-anchor="middle" font-size="8.5" fill="#7a87a8" font-family="sans-serif">ポップアイコン</text>
+          <circle id="vd8" cx="218" cy="357" r="4" fill="#c0c8dc"/>
+        </g>
+        <!-- You are here -->
+        <g id="yah" style="display:none">
+          <circle id="yr" cx="77" cy="72" r="12" fill="rgba(0,0,0,.07)" stroke="#111" stroke-width="1.2"/>
+          <circle id="yd" cx="77" cy="72" r="3.5" fill="#111"/>
+          <text id="yt" x="77" y="55" text-anchor="middle" font-size="7.5" fill="#111" font-family="sans-serif" letter-spacing="1">現在地</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="map-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#111"></div>現在地</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#5a8a85"></div>訪問済み</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#ddd;border:1px solid #ccc"></div>未訪問</div>
+    </div>
+
+    <div class="chip-label">現在地を選択</div>
+    <div class="chips" id="chips">
+      <div class="chip" data-r="1" onclick="selRoom(1)">Room 1</div>
+      <div class="chip" data-r="2" onclick="selRoom(2)">Room 2</div>
+      <div class="chip" data-r="3" onclick="selRoom(3)">Room 3</div>
+      <div class="chip" data-r="4" onclick="selRoom(4)">Room 4</div>
+      <div class="chip" data-r="5" onclick="selRoom(5)">Room 5</div>
+      <div class="chip" data-r="6" onclick="selRoom(6)">Room 6</div>
+      <div class="chip" data-r="7" onclick="selRoom(7)">Room 7</div>
+      <div class="chip" data-r="8" onclick="selRoom(8)">Room 8</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ AUDIO ══════ -->
+<div id="panel-audio" class="panel">
+  <div class="pad">
+    <div class="nfc-card" id="nfc-card">
+      <div class="nfc-ring">📱</div>
+      <div class="nfc-ttl">LINEタッチ（NFC）で自動起動</div>
+      <p class="nfc-body">各ブースのLINEタッチパネルにスマートフォンをかざすだけで、渡辺翔太さんの限定オーディオガイドが自動再生されます。</p>
+      <button class="btn-outline" onclick="simNFC()">タップして体験する</button>
+    </div>
+
+    <div class="np-card">
+      <div class="np-bar"><div class="np-dot"></div><div class="np-lbl">Now Playing</div></div>
+      <div class="np-body">
+        <div class="np-rname" id="np-rname">TIME</div>
+        <div class="np-rsub" id="np-rsub">Room 1 — 時の間</div>
+        <div class="np-desc" id="np-desc">光と時間が交差する空間で、スワロフスキーが刻んできた歴史の始まりをご体感ください。</div>
+        <div class="guide-row">
+          <div class="guide-av">渡</div>
+          <div>
+            <div class="guide-name">渡辺 翔太</div>
+            <div class="guide-role">Swarovski Japan Ambassador</div>
+          </div>
+        </div>
+        <div class="waveform" id="wf"></div>
+        <div class="prog-rail" onclick="seekA(event)">
+          <div class="prog-fill" id="pf" style="width:0%"></div>
+        </div>
+        <div class="prog-times"><span id="tc">0:00</span><span id="tt">2:45</span></div>
+        <div class="ctrls">
+          <button class="cbtn" onclick="prevT()">⏮</button>
+          <button class="cbtn" onclick="skipS(-15)"><span class="skip-txt">↺ 15</span></button>
+          <button class="cbtn play-btn" id="pbtn" onclick="togPlay()">▶</button>
+          <button class="cbtn" onclick="skipS(15)"><span class="skip-txt">15 ↻</span></button>
+          <button class="cbtn" onclick="nextT()">⏭</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rlist-lbl">全ブース一覧</div>
+    <div class="rlist" id="rlist"></div>
+  </div>
+</div>
+
+<!-- ══════ TICKET ══════ -->
+<div id="panel-ticket" class="panel">
+  <div class="pad">
+    <div class="sec-eyebrow">Admission</div>
+    <div class="sec-title">入場チケット</div>
+    <div class="sec-sub">QRコードをスキャンして入場</div>
+
+    <div class="tkt">
+      <div class="tkt-hole-l"></div>
+      <div class="tkt-hole-r"></div>
+      <div class="tkt-top">
+        <div class="tkt-brand">Swarovski</div>
+        <div class="tkt-ttl">MOL展</div>
+        <div class="tkt-sub">Masters of Light 2027</div>
+        <div class="tkt-venue">JING 原宿 B1F</div>
+      </div>
+      <div class="tkt-info">
+        <div class="tkt-row"><span class="tk">氏名</span><span class="tv">山田 花子 様</span></div>
+        <div class="tkt-row"><span class="tk">日時</span><span class="tv">2027.06.15 (土)<br>14:00 入場</span></div>
+        <div class="tkt-row"><span class="tk">会場</span><span class="tv">JING（ジング）原宿 B1F<br>渋谷区神宮前6-7-3</span></div>
+        <div class="tkt-row"><span class="tk">種別</span><span class="tv">一般  ¥2,500</span></div>
+        <div class="tkt-row"><span class="tk">Swarovski Club</span><span class="tv">#SW-2027-08831</span></div>
+      </div>
+      <div class="tkt-btm">
+        <div>
+          <div class="tkt-id-lbl">チケット番号</div>
+          <div class="tkt-id-num">#MOL-4872</div>
+          <div class="tkt-id-note">入場時にご提示ください<br>再入場不可</div>
+        </div>
+        <div class="tkt-qr">
+          <svg width="58" height="58" viewBox="0 0 58 58">
+            <rect width="58" height="58" fill="white"/>
+            <rect x="3" y="3" width="22" height="22" fill="none" stroke="black" stroke-width="2.5"/>
+            <rect x="8" y="8" width="12" height="12" fill="black"/>
+            <rect x="33" y="3" width="22" height="22" fill="none" stroke="black" stroke-width="2.5"/>
+            <rect x="38" y="8" width="12" height="12" fill="black"/>
+            <rect x="3" y="33" width="22" height="22" fill="none" stroke="black" stroke-width="2.5"/>
+            <rect x="8" y="38" width="12" height="12" fill="black"/>
+            <rect x="33" y="33" width="6" height="6" fill="black"/>
+            <rect x="41" y="33" width="6" height="6" fill="black"/>
+            <rect x="33" y="41" width="6" height="6" fill="black"/>
+            <rect x="41" y="41" width="6" height="6" fill="black"/>
+            <rect x="49" y="33" width="6" height="6" fill="black"/>
+            <rect x="49" y="41" width="6" height="6" fill="black"/>
+            <rect x="33" y="49" width="22" height="6" fill="black"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-eyebrow">Event Info</div>
+    <div class="sec-title" style="font-size:18px;margin-bottom:12px">イベント情報</div>
+    <div class="info-block">
+      <div class="info-row"><span class="tk">会期</span><span class="tv">2027.06.01 — 2027.08.31</span></div>
+      <div class="info-row"><span class="tk">開場時間</span><span class="tv">10:00 — 20:00<br><span style="font-size:10px;color:var(--gray2)">最終入場 19:30</span></span></div>
+      <div class="info-row"><span class="tk">会場</span><span class="tv">JING（ジング）原宿 B1F<br>JING EX</span></div>
+      <div class="info-row"><span class="tk">アクセス</span><span class="tv">表参道駅 A1出口 徒歩3分<br>原宿駅 徒歩5分</span></div>
+      <div class="info-row"><span class="tk">料金</span><span class="tv">一般 ¥2,500 / 学生 ¥1,500</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PHOTO ══════ -->
+<div id="panel-photo" class="panel">
+  <div class="pad">
+    <div class="sec-eyebrow">Photo Booth</div>
+    <div class="sec-title">フォトブース</div>
+    <div class="sec-sub">各ブースでの撮影データ</div>
+    <div class="photo-note">
+      <p>フォトブースで撮影後、<strong>LINEで受け取る</strong>をタップすると写真が届きます。オーディオガイドを聴いたブースの写真が解放されます。</p>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</div>
+
+<!-- ══════ STAMP ══════ -->
+<div id="panel-stamp" class="panel">
+  <div class="pad">
+    <div class="stamp-hero">
+      <div class="stamp-hero-eyebrow">Digital Stamp Rally</div>
+      <div class="stamp-hero-ttl">スタンプラリー</div>
+      <p class="stamp-hero-sub">渡辺翔太さんのオーディオガイドを<br>全8ブースで聴いてコンプリートしよう</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="sp-wrap">
+      <div class="sp-top">
+        <div class="sp-heading">進捗</div>
+        <div class="sp-count"><b id="spc">0</b> / 8 ブース完了</div>
+      </div>
+      <div class="sp-bar"><div class="sp-fill" id="spf" style="width:0%"></div></div>
+    </div>
+
+    <!-- Stamp grid -->
+    <div class="sgrid" id="sgrid"></div>
+
+    <!-- Step list -->
+    <div class="step-list" id="step-list"></div>
+
+    <!-- Reward -->
+    <div class="reward-section">
+      <div class="reward-lbl">コンプリート特典</div>
+      <div class="reward-card" id="rcard">
+        <div class="reward-icon">🎁</div>
+        <div class="reward-txt">
+          <h4>限定ノベルティ引換券</h4>
+          <p>全国Swarovskiブティック、またはJING原宿会場内ショップでご利用いただけます。</p>
+        </div>
+        <div class="reward-lock" id="rl">🔒</div>
+      </div>
+      <button class="reward-cta" id="rcta" onclick="openReward()">🎁 プレゼントを受け取る</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <button class="lb-x" onclick="closeLB()">✕</button>
+  <div class="lb-frame" id="lb-frame"></div>
+  <div class="lb-cap">
+    <div class="lb-cap-ttl" id="lb-ttl"></div>
+    <div class="lb-cap-sub" id="lb-sub2"></div>
+  </div>
+  <button class="lb-save">LINEで保存する</button>
+</div>
+
+<!-- Secret modal -->
+<!-- ══════ QUIZ PANEL ══════ -->
+<div id="panel-quiz" class="panel">
+  <div class="pad" id="quiz-contents"></div>
+</div>
+
+<!-- ══ REWARD MODAL ══ -->
+<div class="secret" id="reward-modal">
+  <div style="width:100%;max-width:340px;">
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="width:64px;height:64px;border-radius:50%;border:1px solid var(--border2);background:var(--sw-lt);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px;">🎁</div>
+      <div style="font-size:8.5px;letter-spacing:.3em;color:var(--sw-dk);text-transform:uppercase;margin-bottom:8px;">Complete Reward</div>
+      <div style="font-family:var(--ff-serif);font-size:22px;font-weight:400;color:var(--black);letter-spacing:.04em;margin-bottom:6px;">限定ノベルティ引換券</div>
+      <div style="width:28px;height:1px;background:var(--border2);margin:0 auto 14px;"></div>
+      <p style="font-size:11.5px;line-height:1.8;color:var(--gray1);">全8ブースのオーディオガイドを制覇した方への特別なプレゼントです。下記の引換券を全国Swarovskiブティック、またはJING原宿会場内ショップでご提示ください。</p>
+    </div>
+
+    <!-- Coupon card -->
+    <div id="coupon-card" style="border:1.5px dashed var(--sw-dk);background:var(--sw-lt);padding:20px 18px;margin-bottom:20px;text-align:center;position:relative;">
+      <div style="font-size:8px;letter-spacing:.28em;color:var(--sw-dk);text-transform:uppercase;margin-bottom:10px;">Swarovski × JING 原宿</div>
+      <div style="font-family:var(--ff-serif);font-size:18px;color:var(--black);margin-bottom:6px;">限定ノベルティ 引換券</div>
+      <div style="font-size:10px;color:var(--gray2);margin-bottom:14px;line-height:1.6;">Masters of Light 2027<br>全8ブースコンプリート特典</div>
+      <div style="font-size:22px;font-weight:700;letter-spacing:.12em;color:var(--sw-dk);border:1px solid var(--border2);background:#fff;padding:10px 0;margin-bottom:10px;" id="coupon-code">MOL-COMP-****</div>
+      <div style="font-size:9.5px;color:var(--gray2);">有効期限：2027年8月31日</div>
+    </div>
+
+    <!-- Step 1: 受け取るボタン -->
+    <div id="reward-step1">
+      <button onclick="receiveReward()" style="
+        width:100%;padding:14px;border:none;
+        background:linear-gradient(135deg,var(--sw),var(--sw-dk));
+        color:#fff;font-family:var(--ff);
+        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+        cursor:pointer;margin-bottom:10px;transition:opacity .2s;
+      ">引換券を受け取る</button>
+      <button onclick="closeRewardModal()" style="
+        width:100%;padding:12px;border:1px solid var(--border2);
+        background:none;color:var(--gray2);font-family:var(--ff);
+        font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+        cursor:pointer;transition:all .2s;
+      ">閉じる</button>
+    </div>
+
+    <!-- Step 2: 受け取り完了（hidden） -->
+    <div id="reward-step2" style="display:none;text-align:center;">
+      <div style="width:56px;height:56px;border-radius:50%;background:#e6f7ee;border:1.5px solid #5cb878;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 14px;">✓</div>
+      <div style="font-family:var(--ff-serif);font-size:18px;color:var(--black);margin-bottom:8px;">受け取り完了</div>
+      <p style="font-size:11px;line-height:1.75;color:var(--gray1);margin-bottom:20px;">引換券コードがLINEに送付されました。<br>ブティックのスタッフにご提示ください。</p>
+      <div style="background:#e6f7ee;border:1px solid #5cb878;padding:12px 16px;margin-bottom:20px;text-align:left;">
+        <div style="font-size:9px;letter-spacing:.18em;color:#5cb878;text-transform:uppercase;margin-bottom:4px;">コード発行済み</div>
+        <div style="font-size:16px;font-weight:700;letter-spacing:.12em;color:var(--black);" id="coupon-code-final">MOL-COMP-2748</div>
+      </div>
+      <button onclick="closeRewardModal()" style="
+        width:100%;padding:14px;border:none;
+        background:linear-gradient(135deg,var(--sw),var(--sw-dk));
+        color:#fff;font-family:var(--ff);
+        font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+        cursor:pointer;transition:opacity .2s;
+      ">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECRET STICKER MODAL ══ -->
+<div class="secret" id="secret">
+  <div class="secret-ring"><span class="secret-sticker">💎</span></div>
+  <div class="secret-eyebrow">Secret Reward</div>
+  <div class="secret-ttl">限定LINEスタンプ</div>
+  <div class="secret-div"></div>
+  <p class="secret-body">全8ブースのオーディオガイドを制覇しました。渡辺翔太さんのサイン入り限定LINEスタンプ（8種）をプレゼントします。</p>
+  <button class="secret-cta" onclick="closeSecret()">受け取る</button>
+  <div class="secret-note">スタンプはLINEギフトボックスに届きます</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<nav class="bnav">
+  <button class="bn on" id="bn-map"    onclick="sw('map',null,'bn-map')">   <span>⬡</span>マップ</button>
+  <button class="bn"    id="bn-audio"  onclick="sw('audio',null,'bn-audio')"><span>◎</span>ガイド</button>
+  <button class="bn"    id="bn-ticket" onclick="sw('ticket',null,'bn-ticket')"><span>▣</span>チケット</button>
+  <button class="bn"    id="bn-photo"  onclick="sw('photo',null,'bn-photo')"><span>◈</span>フォト</button>
+  <button class="bn"    id="bn-stamp"  onclick="sw('stamp',null,'bn-stamp')"><span>✦</span>スタンプ</button>
+  <button class="bn"    id="bn-quiz"   onclick="sw('quiz',null,'bn-quiz')"><span>?</span>クイズ</button>
+</nav>
+
+<script>
+const ROOMS = [
+  {id:1, name:"TIME",              ja:"時の間",       desc:"光と時間が交差する空間で、スワロフスキーが刻んできた歴史の始まりをご体感ください。",           dur:"2:45", sec:165, icon:"⧖", em:"⏳"},
+  {id:2, name:"FUTURE HISTORY",    ja:"未来の歴史",    desc:"過去と未来が融合する展示空間。クリスタルが映し出す時代の変遷をご覧ください。",                 dur:"3:12", sec:192, icon:"◈", em:"🔮"},
+  {id:3, name:"MASTERS OF LIGHT",  ja:"光の間",        desc:"光の本質に迫るメインホール。渡辺翔太がスワロフスキーの精髄を語ります。",                      dur:"2:58", sec:178, icon:"◉", em:"💎"},
+  {id:4, name:"DIAMONDS",          ja:"ダイヤモンドの間",desc:"未来のダイヤモンドコレクション。革新的なカット技術が生み出す輝きをご体験ください。",           dur:"3:30", sec:210, icon:"◆", em:"💠"},
+  {id:5, name:"UNA ANGELIC MILAN", ja:"天使の間",      desc:"ミラノ限定コレクション「Una Angelic Milan」。天使の羽をモチーフにした幻想的な空間。",         dur:"2:20", sec:140, icon:"✦", em:"👼"},
+  {id:6, name:"MATHEMAGICAL",      ja:"数学的魔法",    desc:"光と数学が交わるインスタレーション。幾何学的クリスタルアートが感覚を揺さぶります。",             dur:"3:45", sec:225, icon:"⬡", em:"✨"},
+  {id:7, name:"THE JEWELRY BOX",   ja:"宝石箱",        desc:"世界最大級のクリスタルジュエリーボックス。コレクションの歴史が凝縮された空間です。",            dur:"2:55", sec:175, icon:"⬟", em:"🎁"},
+  {id:8, name:"POP ICONS",         ja:"ポップアイコン", desc:"スワロフスキーを纏った伝説のアーティストたち。ポップカルチャーとクリスタルの交差点。",          dur:"4:00", sec:240, icon:"★", em:"🌟"},
+];
+
+const MP = {
+  1:{cx:77,cy:72},  2:{cx:77,cy:179},  3:{cx:77,cy:287},  4:{cx:77,cy:390},
+  5:{cx:267,cy:72}, 6:{cx:267,cy:179}, 7:{cx:267,cy:287}, 8:{cx:267,cy:390},
+};
+
+let cur=1, playing=false, prog=0, tmr=null, visited=new Set(), secretShown=false;
+
+/* panel switch */
+function sw(name, tabEl, bnavId) {
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+name).classList.add('on');
+  document.querySelectorAll('.tab').forEach(b=>{if(b.dataset.p===name)b.classList.add('on');});
+  const bn = document.getElementById(bnavId||'bn-'+name);
+  if(bn) bn.classList.add('on');
+}
+
+/* map */
+function selRoom(id) {
+  cur = id;
+  document.querySelectorAll('.chip').forEach(c => {
+    const r = +c.dataset.r;
+    c.classList.toggle('on', r===id);
+    c.classList.toggle('done', visited.has(r) && r!==id);
+  });
+  updateYAH(id);
+  toast(`Room ${id} — ${ROOMS[id-1].name} を選択中`);
+}
+function selectRoomFromMap(id){ selRoom(id); }
+
+function updateYAH(id) {
+  const p = MP[id];
+  document.getElementById('yah').style.display = 'block';
+  ['yr','yd'].forEach(el=>{
+    document.getElementById(el).setAttribute('cx', p.cx);
+    document.getElementById(el).setAttribute('cy', p.cy);
+  });
+  document.getElementById('yt').setAttribute('x', p.cx);
+  document.getElementById('yt').setAttribute('y', p.cy-15);
+  for(let i=1;i<=8;i++){
+    const rb = document.getElementById('rb'+i);
+    if(rb){ rb.setAttribute('stroke', i===id?'#111':'#d8d4cc'); rb.setAttribute('stroke-width', i===id?'1.5':'1'); }
+  }
+  visited.forEach(v=>{const d=document.getElementById('vd'+v); if(d) d.setAttribute('fill','#5a8a85');});
+}
+
+/* waveform */
+function buildWF() {
+  const wf = document.getElementById('wf'); wf.innerHTML='';
+  [5,10,16,22,18,12,7,14,20,26,20,14,8,5,11,17,23,19,13,7,5,11,17,22,16,10,5,7,13,20,26,18,12,7,5].forEach((h,i)=>{
+    const b = document.createElement('div');
+    b.className='wb'; b.id='wb'+i;
+    b.style.cssText=`height:${h}px;--h:${h}px;animation-delay:${i*.044}s`;
+    wf.appendChild(b);
+  });
+}
+
+/* room list */
+function buildRL() {
+  const el = document.getElementById('rlist'); el.innerHTML='';
+  ROOMS.forEach(r=>{
+    const d = document.createElement('div');
+    d.className = 'ri'+(r.id===cur?' on':'')+(visited.has(r.id)?' done':'');
+    d.id = 'ri'+r.id; d.onclick = ()=>playRoom(r.id);
+    d.innerHTML = `<div class="rnum">${r.id}</div>
+      <div class="rinfo">
+        <div class="rname">${r.name}</div>
+        <div class="rja">${r.ja}</div>
+      </div>
+      <div class="rdur">${r.dur}</div>`;
+    el.appendChild(d);
+  });
+}
+
+/* stamp step list */
+function buildStepList() {
+  const el = document.getElementById('step-list'); el.innerHTML='';
+  ROOMS.forEach(r=>{
+    const d = document.createElement('div');
+    d.className = 'step-item'+(visited.has(r.id)?' done':'');
+    d.id = 'step'+r.id;
+    d.innerHTML=`<div class="step-num">${r.id}</div>
+      <div class="step-txt">${r.name} — ${r.ja}</div>
+      <div class="step-chk">✓</div>`;
+    el.appendChild(d);
+  });
+}
+
+/* stamp grid */
+function buildSG() {
+  const g = document.getElementById('sgrid'); g.innerHTML='';
+  ROOMS.forEach(r=>{
+    const c = document.createElement('div');
+    c.className = 'sc'+(visited.has(r.id)?' earned':'');
+    c.id='sc'+r.id;
+    c.setAttribute('data-r', r.id);
+    c.innerHTML=`<span class="sck">✓</span><span class="si">${r.icon}</span><span class="srn">Room ${r.id}</span>`;
+    g.appendChild(c);
+  });
+}
+
+function updateNP() {
+  const r = ROOMS[cur-1];
+  document.getElementById('np-rname').textContent = r.name;
+  document.getElementById('np-rsub').textContent  = `Room ${r.id} — ${r.ja}`;
+  document.getElementById('np-desc').textContent  = r.desc;
+  document.getElementById('tt').textContent = r.dur;
+  document.getElementById('tc').textContent = '0:00';
+  document.getElementById('pf').style.width = '0%';
+}
+
+function togPlay(){ playing ? stopP() : startP(); }
+function startP() {
+  playing=true;
+  document.getElementById('pbtn').textContent='⏸';
+  document.querySelectorAll('.wb').forEach(b=>b.classList.add('on'));
+  clearInterval(tmr);
+  const total = ROOMS[cur-1].sec;
+  tmr = setInterval(()=>{
+    prog++;
+    if(prog>=total){ prog=total; markV(cur); stopP(); return; }
+    document.getElementById('pf').style.width = (prog/total*100)+'%';
+    document.getElementById('tc').textContent = fmt(prog);
+  }, 120);
+}
+function stopP() {
+  playing=false;
+  document.getElementById('pbtn').textContent='▶';
+  document.querySelectorAll('.wb').forEach(b=>b.classList.remove('on'));
+  clearInterval(tmr);
+}
+function skipS(s){ const t=ROOMS[cur-1].sec; prog=Math.max(0,Math.min(t,prog+s)); document.getElementById('pf').style.width=(prog/t*100)+'%'; document.getElementById('tc').textContent=fmt(prog); }
+function prevT(){ if(cur>1) playRoom(cur-1); }
+function nextT(){ if(cur<8) playRoom(cur+1); }
+function playRoom(id){ if(playing) stopP(); cur=id; prog=0; updateNP(); document.querySelectorAll('.ri').forEach(e=>e.classList.toggle('on',e.id==='ri'+id)); startP(); selRoom(id); document.getElementById('ri'+id).scrollIntoView({behavior:'smooth',block:'nearest'}); }
+function seekA(e){ const r=e.currentTarget.getBoundingClientRect(); const p=(e.clientX-r.left)/r.width; const t=ROOMS[cur-1].sec; prog=Math.round(p*t); document.getElementById('pf').style.width=(p*100)+'%'; document.getElementById('tc').textContent=fmt(prog); }
+function fmt(s){ return `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`; }
+
+function simNFC() {
+  toast(`Room ${cur} — LINEタッチ検知中…`);
+  const card = document.getElementById('nfc-card'); card.style.opacity='.3';
+  setTimeout(()=>{ card.style.display='none'; sw('audio'); playRoom(cur); }, 900);
+}
+
+function markV(id) {
+  if(visited.has(id)) return;
+  visited.add(id);
+  const sc = document.getElementById('sc'+id); if(sc) sc.classList.add('earned');
+  const ri = document.getElementById('ri'+id); if(ri) ri.classList.add('done');
+  const st = document.getElementById('step'+id); if(st) st.classList.add('done');
+  const vd = document.getElementById('vd'+id); if(vd) vd.setAttribute('fill','#5a8a85');
+  const pi = document.getElementById('pi'+id);
+  if(pi){ pi.classList.remove('locked'); const ov=pi.querySelector('.pi-lock'); if(ov) ov.remove(); pi.onclick=()=>openLB(id); }
+  const n = visited.size;
+  document.getElementById('hsc').textContent = n;
+  document.getElementById('spc').textContent = n;
+  document.getElementById('spf').style.width = (n/8*100)+'%';
+  if(n===8){
+    document.getElementById('rcard').classList.add('unlocked');
+    document.getElementById('rl').textContent = '✓';
+    document.getElementById('rcta').classList.add('active');
+    if(!secretShown){ secretShown=true; setTimeout(showSecret,1400); }
+  } else {
+    toast(`Room ${id} スタンプ獲得 (${n}/8)`);
+  }
+}
+
+/* photo — purikura 4-cut format */
+const CUT_LABELS = ['A','B','C','D'];
+function buildPG() {
+  const g = document.getElementById('pgrid'); g.innerHTML='';
+  ROOMS.forEach(r=>{
+    const locked = !visited.has(r.id);
+    const d = document.createElement('div');
+    d.className = 'pi-card'+(locked?' locked':''); d.id='pi'+r.id;
+    const cuts = [r.em, r.em, r.em, r.em]; // 4 cuts (same emoji as placeholder)
+    d.innerHTML=`
+      <div class="pi-header">
+        <div>
+          <div class="pi-header-room">Room ${r.id}</div>
+          <div class="pi-header-name">${r.name}</div>
+        </div>
+        <div class="pi-header-date">2027.06</div>
+      </div>
+      <div class="pi-cuts">
+        ${cuts.map((em,i)=>`
+          <div class="pi-cut">
+            <span class="pi-cut-emoji">${em}</span>
+            <div class="pi-cut-label">cut ${CUT_LABELS[i]}</div>
+          </div>`).join('')}
+      </div>
+      <div class="pi-footer">
+        <span class="pi-footer-txt">Swarovski × JING 原宿</span>
+        ${!locked?`<button class="pi-footer-btn" onclick="event.stopPropagation();openLB(${r.id})">拡大 / 保存</button>`:''}
+      </div>
+      ${locked?`<div class="pi-lock"><div class="pi-lock-icon">🔒</div><span>ガイドを聴くと解放</span></div>`:''}`;
+    g.appendChild(d);
+  });
+}
+function openLB(id) {
+  const r = ROOMS[id-1];
+  document.getElementById('lb').classList.add('on');
+  document.getElementById('lb-ttl').textContent = r.name;
+  document.getElementById('lb-sub2').textContent = `Room ${r.id} — ${r.ja}`;
+  document.getElementById('lb-frame').innerHTML=`
+    <div style="width:100%;height:100%;display:flex;flex-direction:column;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;flex:1;background:#333;">
+        ${[0,1,2,3].map(i=>`
+          <div style="background:#1a1a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative;">
+            <span style="font-size:52px">${r.em}</span>
+            <span style="font-size:8px;letter-spacing:.12em;color:#555;text-transform:uppercase">cut ${CUT_LABELS[i]}</span>
+          </div>`).join('')}
+      </div>
+      <div style="padding:8px 12px;background:#111;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+        <span style="font-size:9px;letter-spacing:.14em;color:#666;text-transform:uppercase">Swarovski × JING 原宿 · Room ${r.id}</span>
+        <span style="font-size:9px;letter-spacing:.1em;color:#555">2027.06</span>
+      </div>
+    </div>`;
+}
+function closeLB(){ document.getElementById('lb').classList.remove('on'); }
+
+function showSecret(){ document.getElementById('secret').classList.add('on'); toast('シークレットリワードを受け取りました'); }
+function closeSecret(){ document.getElementById('secret').classList.remove('on'); }
+
+function openReward(){
+  // 引換券モーダルを開く（step1表示）
+  document.getElementById('reward-step1').style.display = 'block';
+  document.getElementById('reward-step2').style.display = 'none';
+  document.getElementById('coupon-card').style.display = 'block';
+  // コードをマスク表示
+  document.getElementById('coupon-code').textContent = 'MOL-COMP-****';
+  document.getElementById('reward-modal').classList.add('on');
+}
+function closeRewardModal(){
+  document.getElementById('reward-modal').classList.remove('on');
+}
+function receiveReward(){
+  // コード発行 → step2へ
+  const code = 'MOL-COMP-' + Math.floor(1000 + Math.random() * 9000);
+  document.getElementById('coupon-code').textContent = code;
+  document.getElementById('coupon-code-final').textContent = code;
+  document.getElementById('reward-step1').style.display = 'none';
+  document.getElementById('reward-step2').style.display = 'block';
+  toast('✓ 引換券をLINEに送付しました');
+}
+
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2700); }
+
+/* ── QUIZ ── */
+const QUIZ_DATA = [
+  {
+    q:"スワロフスキーが創業されたのは何年でしょう？",
+    choices:["1895年","1905年","1920年","1938年"],
+    ans:0,
+    expl:"ダニエル・スワロフスキーは1895年、オーストリアのワッテンスにて創業。精密カットクリスタルの製造を始め、以来130年以上にわたり輝きを届けています。"
+  },
+  {
+    q:"スワロフスキーの本社が置かれているオーストリアの地名は？",
+    choices:["ザルツブルク","ウィーン","ワッテンス","インスブルック"],
+    ans:2,
+    expl:"チロル州ワッテンス（Wattens）が創業の地であり、現在も本社・ファクトリーが置かれています。"
+  },
+  {
+    q:"「Masters of Light」展で展示品の輝きを生み出す素材は何でしょう？",
+    choices:["天然ダイヤモンド","プレシャスストーン","精密カットクリスタル","強化ガラス"],
+    ans:2,
+    expl:"精密なカットと研磨技術で生まれるスワロフスキークリスタルが、光を多彩に屈折させ万華鏡のような輝きを創出しています。"
+  },
+  {
+    q:"スワロフスキーが自社製品に使用するシンボルマークは何の形？",
+    choices:["白鳥","星","月","クモの巣"],
+    ans:0,
+    expl:"「白鳥」がスワロフスキーを象徴するブランドマークです。純粋さ・優雅さ・永遠の美しさを表現しています。"
+  }
+];
+
+let qState = { cur:0, scores:Array(4).fill(null), phase:'quiz' };
+
+function buildQuiz(){
+  const c = document.getElementById('quiz-contents');
+  const q = QUIZ_DATA[qState.cur];
+  const dots = QUIZ_DATA.map((_,i)=>{
+    const cl = qState.scores[i]===true ? 'got' : (i===qState.cur && qState.phase==='quiz' ? 'cur' : '');
+    return `<div class="qz-prog-dot ${cl}">${qState.scores[i]===true ? '✦' : i+1}</div>`;
+  }).join('');
+  const collected = qState.scores.filter(s=>s===true).length;
+
+  let content = `
+  <div class="qz-hero">
+    <h2>✦ CRYSTAL QUEST ✦</h2>
+    <p>スワロフスキーにまつわるクイズに挑戦しよう</p>
+    <div class="qz-prog">${dots}</div>
+    <div class="qz-code-count">コード獲得数：${collected} / ${QUIZ_DATA.length}</div>
+  </div>`;
+
+  if(qState.phase==='complete'){
+    const chips = qState.scores.map((_,i)=>`<span class="qz-code-chip">SW-${2025+i}-★</span>`).join('');
+    content += `
+    <div class="qz-complete show">
+      <div class="qz-complete-icon">✦</div>
+      <h3>QUEST COMPLETE!</h3>
+      <p>全${QUIZ_DATA.length}問クリアしました！<br>コレクションコードを受け取り、ノベルティと交換しよう。</p>
+      <div class="qz-codes">${chips}</div>
+      <button class="qz-complete-btn" onclick="showNovelty()">ノベルティを受け取る →</button>
+    </div>`;
+  } else if(qState.phase==='novelty'){
+    content += `
+    <div class="qz-novelty show">
+      <h3>ノベルティ交換</h3>
+      <div class="qz-nov-card">
+        <h4>🏛 EVENT VENUE</h4>
+        <p>JING 原宿 B1F の会場スタッフにこの画面を提示してください。<br>スワロフスキーオリジナルステッカーをプレゼント。</p>
+        <button class="qz-use-btn" id="use-venue" onclick="useNovelty('use-venue')">会場で使用する</button>
+      </div>
+      <div class="qz-nov-card">
+        <h4>💎 SWAROVSKI BOUTIQUE</h4>
+        <p>スワロフスキー公式ブティックにてスタッフにご提示ください。<br>ショッピング10%オフクーポンとして利用できます。</p>
+        <button class="qz-use-btn" id="use-boutique" onclick="useNovelty('use-boutique')">ブティックで使用する</button>
+      </div>
+    </div>`;
+  } else {
+    const choicesBtns = q.choices.map((ch,i)=>
+      `<button class="qz-choice" id="qc-${i}" onclick="answerQuiz(${i})">${ch}</button>`
+    ).join('');
+    content += `
+    <div class="qz-card">
+      <div class="qz-qnum">Q${qState.cur+1} / ${QUIZ_DATA.length}</div>
+      <div class="qz-qtext">${q.q}</div>
+      <div class="qz-choices">${choicesBtns}</div>
+      <div class="qz-result" id="qz-result"></div>
+      <button class="qz-next-btn" id="qz-next" onclick="nextQuiz()">
+        ${qState.cur < QUIZ_DATA.length-1 ? '次の問題へ →' : 'クエスト完了！ ✦'}
+      </button>
+    </div>`;
+  }
+
+  c.innerHTML = content;
+}
+
+function answerQuiz(idx){
+  const q = QUIZ_DATA[qState.cur];
+  const correct = idx === q.ans;
+  qState.scores[qState.cur] = correct;
+  document.querySelectorAll('.qz-choice').forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.ans) el.classList.add('correct');
+    else if(i===idx && !correct) el.classList.add('wrong');
+  });
+  const res = document.getElementById('qz-result');
+  if(correct){
+    res.className='qz-result ok show';
+    res.innerHTML=`<div class="qz-result-icon">✦</div><strong>正解！</strong><br>${q.expl}`;
+  } else {
+    res.className='qz-result ng show';
+    res.innerHTML=`<div class="qz-result-icon">✕</div><strong>不正解</strong>　正解は「${q.choices[q.ans]}」<br>${q.expl}`;
+  }
+  document.getElementById('qz-next').classList.add('show');
+}
+
+function nextQuiz(){
+  if(qState.cur < QUIZ_DATA.length-1){
+    qState.cur++;
+    buildQuiz();
+  } else {
+    qState.phase='complete';
+    buildQuiz();
+  }
+}
+
+function showNovelty(){
+  qState.phase='novelty';
+  buildQuiz();
+}
+
+function useNovelty(id){
+  const btn = document.getElementById(id);
+  btn.textContent='使用済み ✓';
+  btn.classList.add('used');
+  toast('✓ ノベルティを使用しました');
+}
+
+/* init */
+buildWF(); buildRL(); buildSG(); buildStepList(); buildPG(); buildQuiz();
+// デモ用：ボタンを最初から押せる状態に
+document.getElementById('rcta').classList.add('active');
+</script>
+</body>
+</html>
